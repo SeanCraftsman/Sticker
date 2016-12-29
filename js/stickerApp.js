@@ -25,15 +25,17 @@ var bindEventDrag = function(s) {
 }
 
 var changeZIndex = function(s) {
-	var list = es('.sticker')
-	for(var i = 0; i < list.length; i++) {
-		var item = list[i]
-		let z = parseInt(item.style.zIndex) - 1
-		item.style.zIndex = z
-	}
 	var container = e('#sticker-container')
 	var z = container.dataset.num
-	s.style.zIndex = z
+	if (s.style.zIndex != z){
+		var list = es('.sticker')
+		for(var i = 0; i < list.length; i++) {
+			var item = list[i]
+			let z = parseInt(item.style.zIndex) - 1
+			item.style.zIndex = z
+		}
+		s.style.zIndex = z
+	}
 }
 
 var bindEventDragAll = function() {
@@ -50,26 +52,46 @@ var removeDragAll = function() {
 	}
 }
 
-var removeEditableAll = function(selector) {
-	var list = es(selector)
+var removeEditableAll = function() {
+	var list = es('div')
 	for(let i = 0; i < list.length; i++) {
 		let item = list[i]
 		item.removeAttribute('contenteditable')
 	}
 }
 
-var bindEventEditable = function() {
-	bindAll('.sticker-message', 'click', function(event){
-		removeEditableAll('.sticker-message')
-		var target = event.target
+var notEditable = function(target, selectorList) {
+	for(var i = 0; i < selectorList.length; i++) {
+		let s = selectorList[i]
+		if(target.closest(s) != null) {
+			return false
+		}
+	}
+	return true
+}
+
+var bindEventEditable = function(selector) {
+	bindAll(selector, 'mousedown', function(event){
+		removeEditableAll()
+		var target = event.target.closest(selector)
 		target.setAttribute('contenteditable', 'true')
 	})
+}
+
+var bindEventEditableAll = function() {
+	var selectorList = ['.sticker-message', '.sticker-title', '.finish-time']
+
+	for (var i = 0; i < selectorList.length; i++) {
+		let s = selectorList[i]
+		bindEventEditable(s)
+	}
 
 	var body = e('body')
 	bindEvent(body, 'mousedown', function(event){
 		var target = event.target
-		if (!target.classList.contains('sticker-message')) {
-			removeEditableAll('.sticker-message')
+		if (notEditable(target, selectorList)) {
+			log('null')
+			removeEditableAll()
 		}
 	})
 }
@@ -77,7 +99,7 @@ var bindEventEditable = function() {
 
 var __main = function() {
 	bindEventDragAll()
-	bindEventEditable()
+	bindEventEditableAll()
 }
 
 var isDragging = false
