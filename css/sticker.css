@@ -6,6 +6,12 @@ body {
 	font-family:"Microsoft Yahei", sans-serif;
 	font-size:100%;
 	background:#666;
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -999;
 }
 
 .sticker {
@@ -29,6 +35,7 @@ body {
 	font-size: 20px;
 	text-indent: 0.6em;
 	cursor: default;
+	user-select: none;
 }
 
 .sticker-shut {
@@ -46,6 +53,7 @@ body {
 }
 
 .sticker-time {
+	user-select: none;
 	cursor: default;
 	margin-top: 20px; 
 	font-size: 10px;
@@ -65,4 +73,5 @@ body {
 	overflow: hidden;
 	outline:none;
 	max-height: 320px;
+	user-select: none;
 }

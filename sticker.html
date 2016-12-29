@@ -6,18 +6,22 @@
 	<link rel="stylesheet" href="css\sticker.css">
 </head>
 <body>
-	<div class="sticker">
-		<div class="sticker-title" spellcheck="false">
-			title
-			<span class="sticker-shut">×</span>
+	<div class="sticker" data-drag='true'>
+		<div class="sticker-dragarea">
+			<div class="sticker-title" spellcheck="false">
+				title
+				<span class="sticker-shut">×</span>
+			</div>
+			<div class="sticker-time">
+				<div class="finish-time">deadline: 11:30 2016/12/29 </div>
+				<div class="create-time">time: 11:20 2016/12/29 </div>
+			</div>	
 		</div>
-		<div class="sticker-time">
-			<div class="finish-time">deadline: 11:30 2016/12/29 </div>
-			<div class="create-time">time: 11:20 2016/12/29 </div>
-		</div>
-		<div class="sticker-message" contenteditable="true" spellcheck="false">
+		<div class="sticker-message" spellcheck="false">
 			message
 		</div>
 	</div>
+	<script src='js\berry.js'></script>
+	<script src='js\stickerApp.js'></script>
 </body>
 </html>
