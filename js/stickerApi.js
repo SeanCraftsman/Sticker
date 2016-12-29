@@ -26,9 +26,17 @@ var getID = function() {
     return idStr
 }
 
+var getZIndex = function() {
+    var c = e('#sticker-container')
+    var z = parseInt(c.dataset.num) + 1
+    c.dataset.num = z
+    return c.dataset.num
+}
+
 var todoNew = function() {
     var d = time()
     var ID = getID()
+    var zIndex = getZIndex()
     var t = {
         id: ID,
         title: "title",
@@ -38,6 +46,7 @@ var todoNew = function() {
         deadline: "",
         x: "200px",
         y: "100px",
+        z: zIndex,
     }
     return t
 }
