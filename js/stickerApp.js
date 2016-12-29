@@ -3,6 +3,7 @@ var bindEventDrag = function(s) {
 		s.dataset.drag = 'true'
 		s.dataset.diffX=event.clientX-s.offsetLeft;
 		s.dataset.diffY=event.clientY-s.offsetTop;
+		changeZIndex(s)
 	})
 
 	var body = e('body')
@@ -11,7 +12,6 @@ var bindEventDrag = function(s) {
 		let diffX = s.dataset.diffX
 		let diffY = s.dataset.diffY
 		if (drag == 'true') {
-			log('drag:', drag)
 			var clientX = event.clientX
 			var clientY = event.clientY
 			s.style.left = clientX - diffX + 'px'
@@ -22,6 +22,18 @@ var bindEventDrag = function(s) {
 		removeDragAll()
 	})
 
+}
+
+var changeZIndex = function(s) {
+	var list = es('.sticker')
+	for(var i = 0; i < list.length; i++) {
+		var item = list[i]
+		let z = parseInt(item.style.zIndex) - 1
+		item.style.zIndex = z
+	}
+	var container = e('#sticker-container')
+	var z = container.dataset.num
+	s.style.zIndex = z
 }
 
 var bindEventDragAll = function() {
