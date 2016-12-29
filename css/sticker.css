@@ -5,7 +5,7 @@
 body {
 	font-family:"Microsoft Yahei", sans-serif;
 	font-size:100%;
-	background:#666;
+	background:#555;
 	height: 100%;
 	width: 100%;
 	position: fixed;
@@ -30,7 +30,7 @@ body {
 	left: 0;
 	top: 0;
 	overflow: hidden;
-	width: 200px;
+	width: 220px;
 	height: 30px;
 	line-height: 30px;
 	font-size: 20px;
@@ -38,6 +38,7 @@ body {
 	cursor: default;
 	user-select: none;
 	outline: none;
+	border-bottom: 1px solid rgba(200, 200, 200, 0.3);
 }
 
 .sticker-shut {
@@ -50,26 +51,40 @@ body {
 	height: 30px;
 	width: 30px;
 	cursor: default;
+	user-select: none;
 }
 
 .sticker-shut:hover {
 	color: gray;
 }
 
+
 .sticker-time {
 	user-select: none;
 	cursor: default;
+	width: 220px;
 	margin-top: 20px; 
 	font-size: 10px;
 	color: gray;
 	border-bottom: 1px solid rgba(200, 200, 200, 0.3);
 }
 
+.deadline-title {
+	margin-right: 0px;
+	line-height: 20px; 
+	user-select: none;
+	cursor: default;
+	display: inline-block;
+	
+}
+
 .finish-time {
 	color: black;
+	width: 160px;
+	height: 13px;
 	font-size: 13px;
-	border-top: 1px solid rgba(200, 200, 200, 0.3);
 	outline: none;
+	display: inline-block;
 }
 
 .sticker-message {
@@ -82,5 +97,19 @@ body {
 }
 
 .add-sticker {
+	z-index: 1000;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	position: absolute;
+	left: 5%;
+	bottom: 50%;
+	transform: translate(-50%, -50%);
+	background: url('../img/plus.png');
+	background-size: 100% 100%;
+	opacity: 0.3;
+}
 
+.add-sticker:hover {
+	opacity: 0.4;	
 }
