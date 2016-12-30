@@ -176,6 +176,9 @@ var initApp = function() {
 	var list = es('.sticker')
 	var container = e('#sticker-container')
 	container.dataset.num = list.length
+	if (list.length == 0) {
+		localStorage.stickersID = 0
+	}
 }
 
 var __main = function() {
