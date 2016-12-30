@@ -68,8 +68,9 @@ var removeDragAll = function() {
 
 var refreshTodo = function(s, todo) {
 	var message = s.querySelector('.sticker-message').innerHTML
-	var title = s.querySelector('.sticker-title').innerHTML
-	var done = s.classList.contains('done') ? true : false
+	var st = s.querySelector('.sticker-title')
+	var title = st.innerHTML
+	var done = st.classList.contains('done') ? true : false
 	var deadline = s.querySelector('.finish-time').innerHTML
 	var x = s.style.left
 	var y = s.style.top
@@ -131,9 +132,12 @@ var shakeSticker = function() {
 	list = es('.sticker')
 	for(var i = 0; i < list.length; i++) {
 		var s = list[i]
+
 		s.classList.add('shake')
 		setTimeout(function(s){
-			s.classList.remove('shake')
+			if(s != undefined) {
+				s.classList.remove('shake')
+			}
 		}, 500)
 	}
 }
@@ -190,12 +194,39 @@ var initApp = function() {
 	}
 }
 
+var targetContain = function(target, list) {
+	for(var i = 0; i < list.length; i++) {
+		var c = list[i]
+		if (target.classList.contains(c)) {
+			return true
+		}
+	}
+	return false
+}
+
+var bindEventDone = function() {
+	var list = e('#sticker-container')
+	bindEvent(list, 'dblclick', function(event){
+		var list = ['sticker', 'sticker-shut', 'sticker-time', 'deadline-title', 
+					'finish-time', 'create-time', 'sticker-message']
+		var target = event.target
+		if (targetContain(target, list) == false) {
+			if (target.classList.contains('done')){
+				target.classList.remove('done')
+			} else {
+				target.classList.add('done')
+			}
+		}
+	})
+}
+
 var __main = function() {
 	initApp()
 	bindEventAddNew()
 	bindEventDrag()
 	bindEventEditable()
 	bindEventDelete()
+	bindEventDone()
 }
 
 __main()

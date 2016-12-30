@@ -9,11 +9,11 @@ var todoTemplate = function(todo) {
 	var y = todo.y
 	var z = todo.z
 	var t = `
-	    <div class="sticker ${done}" data-drag='false' 
+	    <div class="sticker" data-drag='false' 
 	    	 data-diff-x='0' data-diff-y='0'
 	         style="z-index: ${z}; left: ${x}; top: ${y};"
 	         data-id=${id}>
-			<div class="sticker-title" spellcheck="false">
+			<div class="sticker-title ${done}" spellcheck="false">
 				${title}
 			</div>
 			<span class="sticker-shut">×</span>
