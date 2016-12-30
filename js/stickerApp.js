@@ -127,6 +127,24 @@ var bindEventEditable = function() {
 	})
 }
 
+var deleteSticker = function(s) {
+	var id = s.dataset.id
+	deleteTodo(id)	
+}
+
+var bindEventDelete = function() {
+	var list = e('#sticker-container')
+	bindEvent(list, 'click', function(event){
+		let target = event.target
+		let button = target.closest('.sticker-shut')
+		if( button != null) {
+			var s = button.closest('.sticker')
+			deleteSticker(s)
+			initApp()
+		}
+	})
+}
+
 
 var initApp = function() {
 	showTodoList()
@@ -140,6 +158,7 @@ var __main = function() {
 	bindEventAddNew()
 	bindEventDrag()
 	bindEventEditable()
+	bindEventDelete()
 }
 
 __main()
