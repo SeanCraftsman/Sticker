@@ -143,8 +143,33 @@ var bindEventDelete = function() {
 			initApp()
 		}
 	})
+
+	bindEventTrashBin()
 }
 
+var bindEventTrashBin = function() {
+	var bin = e('.trash-bin')
+	bindEvent(bin, 'mouseenter', function(event){
+		// log('mouseenter')
+		bin.classList.add('trash-bin-hover')
+	})
+	bindEvent(bin, 'mouseleave', function(event){
+		// log('mouseleave')
+		bin.classList.remove('trash-bin-hover')
+	})
+	bindEvent(bin, 'mouseup', function(event){
+		log('mouseup')
+		bin.classList.remove('trash-bin-hover')
+		var list = es('.sticker')
+		for(let i = 0; i < list.length; i++){
+			if(list[i].dataset.drag == 'true') {
+				var s = list[i]
+				deleteSticker(s)
+				initApp()
+			}
+		}
+	})
+}
 
 var initApp = function() {
 	showTodoList()
