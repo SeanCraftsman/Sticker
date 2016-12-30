@@ -14,10 +14,20 @@ body {
 	z-index: -999;
 }
 
+.sticker:nth-child(even) {
+	transform: rotate(2deg);
+}
+
+.sticker:nth-child(3n) {
+	transform: rotate(-3deg);
+}
+
+.sticker:nth-child(5n) {
+	transform: rotate(5deg);
+}
+
 .sticker {
 	position: absolute;
-	left: 30%;
-	top: 30%;
 	background: #ffc;
 	padding: 10px; 
 	width: 230px;
