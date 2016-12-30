@@ -1,5 +1,5 @@
 var formatTime = function(num) {
-    let str = String(num)
+    var str = String(num)
     while(str.length < 2) {
         str = '0' + str
     }
@@ -79,8 +79,8 @@ var changeTodo = function(newTodo) {
     var id = newTodo.id
     var list = loadTodos()
     var newList = []
-    for(let i = 0; i < list.length; i++) {
-        let todo = list[i]
+    for(var i = 0; i < list.length; i++) {
+        var todo = list[i]
         if(todo.id != id) {
             newList.push(todo)
         } else {
@@ -93,8 +93,8 @@ var changeTodo = function(newTodo) {
 var deleteTodo = function(id) {
     var list = loadTodos()
     var newList = []
-    for(let i = 0; i < list.length; i++) {
-        let todo = list[i]
+    for(var i = 0; i < list.length; i++) {
+        var todo = list[i]
         if (todo.id != id) {
             newList.push(todo)
         }
@@ -104,7 +104,7 @@ var deleteTodo = function(id) {
 
 var getTodo = function(id) {
     var list = loadTodos()
-    for(let i = 0; i < list.length; i++) {
+    for(var i = 0; i < list.length; i++) {
         var todo = list[i]
         if (todo.id == id) {
             return todo

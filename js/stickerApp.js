@@ -15,8 +15,8 @@ var changeZIndex = function(s) {
 		var list = es('.sticker')
 		for(var i = 0; i < list.length; i++) {
 			var item = list[i]
-			let z = parseInt(item.style.zIndex) - 1
-			item.style.zIndex = z
+			var zI = parseInt(item.style.zIndex) - 1
+			item.style.zIndex = zI
 		}
 		s.style.zIndex = z
 	}
@@ -26,8 +26,8 @@ var bindEventDrag = function() {
 	var list = e('#sticker-container')
 	// 事件委托
 	bindEvent(list, 'mousedown', function(event){
-		let target = event.target
-		let s = target.closest('.sticker')
+		var target = event.target
+		var s = target.closest('.sticker')
 		if( s != null) {
 			s.dataset.drag = 'true'
 			s.dataset.diffX = event.clientX - s.offsetLeft;
@@ -40,13 +40,13 @@ var bindEventDrag = function() {
 	bindEvent(body, 'mousemove', function(event) {
 		var list = es('.sticker')
 		for(var i = 0; i < list.length; i++) {
-			let s = list[i]
-			let drag = s.dataset.drag
+			var s = list[i]
+			var drag = s.dataset.drag
 			if (drag == 'true') {
-				let diffX = s.dataset.diffX
-				let diffY = s.dataset.diffY
-				let clientX = event.clientX
-				let clientY = event.clientY
+				var diffX = s.dataset.diffX
+				var diffY = s.dataset.diffY
+				var clientX = event.clientX
+				var clientY = event.clientY
 				s.style.left = clientX - diffX + 'px'
 				s.style.top = clientY - diffY + 'px'
 			}	
@@ -60,8 +60,8 @@ var bindEventDrag = function() {
 
 var removeDragAll = function() {
 	var list = es('.sticker')
-	for(let i = 0; i < list.length; i++) {
-		let s = list[i]
+	for(var i = 0; i < list.length; i++) {
+		var s = list[i]
 		s.dataset.drag = 'false'
 	}
 }
@@ -99,16 +99,16 @@ var refreshTodosAll = function() {
 
 var removeEditableAll = function() {
 	var list = es('div')
-	for(let i = 0; i < list.length; i++) {
-		let item = list[i]
+	for(var i = 0; i < list.length; i++) {
+		var item = list[i]
 		item.removeAttribute('contenteditable')
 	}
 }
 
 var notEditable = function(target, selectorList) {
 	for(var i = 0; i < selectorList.length; i++) {
-		let s = selectorList[i]
-		let t = target.closest(s)
+		var s = selectorList[i]
+		var t = target.closest(s)
 		if(t != null) {
 			t.setAttribute('contenteditable', 'true')
 			return false
@@ -152,8 +152,8 @@ var deleteSticker = function(s) {
 var bindEventDelete = function() {
 	var list = e('#sticker-container')
 	bindEvent(list, 'click', function(event){
-		let target = event.target
-		let button = target.closest('.sticker-shut')
+		var target = event.target
+		var button = target.closest('.sticker-shut')
 		if( button != null) {
 			var s = button.closest('.sticker')
 			deleteSticker(s)
@@ -175,7 +175,7 @@ var bindEventTrashBin = function() {
 		log('mouseup')
 		bin.classList.remove('trash-bin-hover')
 		var list = es('.sticker')
-		for(let i = 0; i < list.length; i++){
+		for(var i = 0; i < list.length; i++){
 			if(list[i].dataset.drag == 'true') {
 				var s = list[i]
 				deleteSticker(s)
