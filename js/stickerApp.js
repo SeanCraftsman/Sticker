@@ -127,9 +127,22 @@ var bindEventEditable = function() {
 	})
 }
 
+var shakeSticker = function() {
+	list = es('.sticker')
+	for(var i = 0; i < list.length; i++) {
+		var s = list[i]
+		s.classList.add('shake')
+		setTimeout(function(s){
+			s.classList.remove('shake')
+		}, 500)
+	}
+}
+
 var deleteSticker = function(s) {
 	var id = s.dataset.id
 	deleteTodo(id)	
+	initApp()
+	shakeSticker()
 }
 
 var bindEventDelete = function() {
@@ -140,7 +153,6 @@ var bindEventDelete = function() {
 		if( button != null) {
 			var s = button.closest('.sticker')
 			deleteSticker(s)
-			initApp()
 		}
 	})
 
@@ -150,11 +162,9 @@ var bindEventDelete = function() {
 var bindEventTrashBin = function() {
 	var bin = e('.trash-bin')
 	bindEvent(bin, 'mouseenter', function(event){
-		// log('mouseenter')
 		bin.classList.add('trash-bin-hover')
 	})
 	bindEvent(bin, 'mouseleave', function(event){
-		// log('mouseleave')
 		bin.classList.remove('trash-bin-hover')
 	})
 	bindEvent(bin, 'mouseup', function(event){
@@ -165,7 +175,6 @@ var bindEventTrashBin = function() {
 			if(list[i].dataset.drag == 'true') {
 				var s = list[i]
 				deleteSticker(s)
-				initApp()
 			}
 		}
 	})
