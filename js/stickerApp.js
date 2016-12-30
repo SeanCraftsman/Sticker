@@ -10,16 +10,17 @@ var bindEventAddNew = function() {
 
 var changeZIndex = function(s) {
 	var container = e('#sticker-container')
-	var z = container.dataset.num
-	if (s.style.zIndex != z){
-		var list = es('.sticker')
-		for(var i = 0; i < list.length; i++) {
-			var item = list[i]
-			var zI = parseInt(item.style.zIndex) - 1
-			item.style.zIndex = zI
+	var indexS = s.style.zIndex
+	var list = es('.sticker')
+	for(var i = 0; i < list.length; i++) {
+		var item = list[i]
+		var zIndex = parseInt(item.style.zIndex)
+		if (zIndex > indexS) {
+			item.style.zIndex = zIndex - 1
 		}
-		s.style.zIndex = z
 	}
+	var z = container.dataset.num
+	s.style.zIndex = z
 }
 
 var bindEventDrag = function() {
