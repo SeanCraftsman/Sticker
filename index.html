@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>StickyNotes</title>
+	<link rel="stylesheet" href="css\main.css">
+	<link rel="stylesheet" href="css\todolist.css">
 	<link rel="stylesheet" href="css\sticker.css">
 	<link rel="stylesheet" href="css\shake.css">
 </head>
@@ -20,7 +22,31 @@
 		<div class="trash-bin"></div>	
 	</div>
 	<div id="id-todo-list" class="todo-page">
-		
+		<div id="id-todo-content" data-num='0'>
+
+		</div>
+		<span id="detail-triangle"></span>
+		<div id="id-todo-detail">
+			<div class="todo-sticker" data-id=${id}>
+			<div class="todo-title " spellcheck="false">
+				${title}
+			</div>
+			<div class="todo-time">
+				<div class="todo-deadline-title">deadline:</div>
+				<div class="todo-finish-time">${deadline}</div>
+				<div class="todo-create-time">time: ${time} </div>
+			</div>	
+			<div class="todo-message" spellcheck="false">
+				<div>${message}</div>
+				<div>${message}</div>
+				<div>${message}</div>
+				<div>${message}</div>
+				<div>${message}</div>
+				<div>${message}</div>
+				
+			</div>
+		</div>
+		</div>
 	</div>
 	<script src='js\berry.js'></script>
 	<script src='js\stickerApi.js'></script>
