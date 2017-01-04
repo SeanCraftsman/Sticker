@@ -27,7 +27,7 @@ var getID = function() {
 }
 
 var getZIndex = function() {
-    var c = e('#sticker-container')
+    var c = e('#id-sticker-container')
     var z = parseInt(c.dataset.num) + 1
     c.dataset.num = z
     return c.dataset.num

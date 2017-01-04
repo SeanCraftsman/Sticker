@@ -1,7 +1,7 @@
 var bindEventAddNew = function() {
 	var button = e('.add-sticker')
 	bindEvent(button, 'click', function(){
-		var c = e('#sticker-container')
+		var c = e('#id-sticker-container')
 		var todo = todoNew()
 		saveTodo(todo)
 		showTodoList()
@@ -9,7 +9,7 @@ var bindEventAddNew = function() {
 }
 
 var changeZIndex = function(s) {
-	var container = e('#sticker-container')
+	var container = e('#id-sticker-container')
 	var indexS = s.style.zIndex
 	var list = es('.sticker')
 	for(var i = 0; i < list.length; i++) {
@@ -24,7 +24,7 @@ var changeZIndex = function(s) {
 }
 
 var bindEventDrag = function() {
-	var list = e('#sticker-container')
+	var list = e('#id-sticker-container')
 	// 事件委托
 	bindEvent(list, 'mousedown', function(event){
 		var target = event.target
@@ -151,7 +151,7 @@ var deleteSticker = function(s) {
 }
 
 var bindEventDelete = function() {
-	var list = e('#sticker-container')
+	var list = e('#id-sticker-container')
 	bindEvent(list, 'click', function(event){
 		var target = event.target
 		var button = target.closest('.sticker-shut')
@@ -188,7 +188,7 @@ var bindEventTrashBin = function() {
 var initApp = function() {
 	showTodoList()
 	var list = es('.sticker')
-	var container = e('#sticker-container')
+	var container = e('#id-sticker-container')
 	container.dataset.num = list.length
 	if (list.length == 0) {
 		localStorage.stickersID = 0
@@ -206,7 +206,7 @@ var targetContain = function(target, list) {
 }
 
 var bindEventDone = function() {
-	var list = e('#sticker-container')
+	var list = e('#id-sticker-container')
 	bindEvent(list, 'dblclick', function(event){
 		var list = ['sticker', 'sticker-shut', 'sticker-time', 'deadline-title', 
 					'finish-time', 'create-time', 'sticker-message']
@@ -221,6 +221,27 @@ var bindEventDone = function() {
 	})
 }
 
+var bindEventChangePage = function() {
+	var wall = e('#id-wall')
+	bindEvent(wall, 'click', function(){
+		var pages = es('.todo-page')
+		for (var i = 0; i < pages.length; i++) {
+			pages[i].classList.add('hidden')
+		}
+		var w = e('#id-todo-wall')
+		w.classList.remove('hidden')
+	})
+	var list = e('#id-list')
+	bindEvent(list, 'click', function(){
+		var pages = es('.todo-page')
+		for (var i = 0; i < pages.length; i++) {
+			pages[i].classList.add('hidden')
+		}
+		var l = e('#id-todo-list')
+		l.classList.remove('hidden')
+	})
+}
+
 var __main = function() {
 	initApp()
 	bindEventAddNew()
@@ -228,6 +249,7 @@ var __main = function() {
 	bindEventEditable()
 	bindEventDelete()
 	bindEventDone()
+	bindEventChangePage()
 }
 
 __main()

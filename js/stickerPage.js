@@ -32,7 +32,7 @@ var todoTemplate = function(todo) {
 
 
 var insertTodoList = function(todoList) {
-    var todoListDiv = e('#sticker-container')
+    var todoListDiv = e('#id-sticker-container')
     // 清空现有的所有 todo
     todoListDiv.innerHTML = ''
     for (var i = 0; i < todoList.length; i++) {
