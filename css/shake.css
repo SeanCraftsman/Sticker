@@ -1,6 +1,6 @@
 .shake {
 	animation-name: shake-base;
-	animation-duration: 300ms;
+	animation-duration: 350ms;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in-out;
 	animation-delay: 0s;
