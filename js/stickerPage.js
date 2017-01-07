@@ -65,9 +65,7 @@ var insertTodoList = function(todoList) {
         var c = cardTemplate(todo)
         appendHtml(todoListDiv, t)
         appendHtml(listWindow, c)
-    }
-
-    
+    }    
 }
 
 var detailTemplate = function(todo) {
@@ -156,4 +154,10 @@ var showTodoList = function() {
     var todoList = loadTodos()
     insertTodoList(todoList)
     bindListAnimation()
+    var id = e('.todo-sticker').dataset.id
+    log('id,', id)
+    if (id != '${id}') {
+    	var todo = getTodo(id)
+		changeDetail(todo)
+    }
 }

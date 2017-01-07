@@ -224,6 +224,7 @@ var bindEventDone = function() {
 var bindEventChangePage = function() {
 	var wall = e('#id-wall')
 	bindEvent(wall, 'click', function(){
+		showTodoList()
 		var pages = es('.todo-page')
 		for (var i = 0; i < pages.length; i++) {
 			pages[i].classList.add('hidden')
@@ -233,6 +234,7 @@ var bindEventChangePage = function() {
 	})
 	var list = e('#id-list')
 	bindEvent(list, 'click', function(){
+		showTodoList()
 		var pages = es('.todo-page')
 		for (var i = 0; i < pages.length; i++) {
 			pages[i].classList.add('hidden')

@@ -172,6 +172,12 @@
 	transform: translateY(-50%);
 }
 
+.card-title {
+	text-indent: 1.4em;
+	line-height: 80px;
+	font-size: 20px;
+}
+
 .todo-message::-webkit-scrollbar,
 #id-list-window::-webkit-scrollbar
 {
