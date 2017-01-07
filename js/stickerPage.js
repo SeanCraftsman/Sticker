@@ -101,6 +101,36 @@ var changeDetail = function(todo) {
 	appendHtml(detail, t)
 }
 
+var limit = function(num, low, high) {
+	if( num <= low) {
+		num = low
+	} else if (num >= high) {
+		num = high
+	}
+	return num
+}
+
+var moveTriangle = function(id = null) {
+	var t = e('#detail-triangle')
+	if (id == null) {
+		var id = t.dataset.id
+		if (id == null) {
+			return
+		}
+	} 
+	t.dataset.id = id
+	var cards = es('.todo-card')
+	for (var i = 0; i < cards.length; i++) {
+		var c = cards[i]
+		if (c.dataset.id == id) {
+			var scrollTop = e('#id-list-window').scrollTop
+			var pos = c.offsetTop - scrollTop + 120
+			pos = limit(pos, 120, 550)
+			t.style.top = pos + 'px';
+		}
+	}
+}
+
 var bindListAnimation = function() {
 	var listWindow = e('#id-list-window')
 	bindEvent(listWindow, 'mousedown', function(event){
@@ -110,11 +140,13 @@ var bindListAnimation = function() {
 			var id = card.dataset.id
 			var todo = getTodo(id)
 			changeDetail(todo)
+			var triangle = e('detail-triangle')
+			moveTriangle(id)
 		}
 	})
 
 	bindEvent(listWindow, 'scroll', function(event){
-		
+		moveTriangle()
 	})
 }
 
