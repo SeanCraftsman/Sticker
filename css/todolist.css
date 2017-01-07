@@ -1,3 +1,8 @@
+#id-todo-list .done {
+	color: rgb(65, 65, 65);
+	text-decoration: line-through;
+}
+
 #id-todo-content {
 	width: 400px;
 	height: 550px;
@@ -92,20 +97,17 @@
 }
 
 .todo-message {
-	line-height: 
 	width: 100%;
-	min-height: 170px;
 	font-size: 20px;
 	text-indent: 1em;
 	line-height: 30px;
-	overflow: hidden;
+	overflow-y: scroll;
 	outline:none;
-	max-height: 320px;
+	max-height: 385px;
 	user-select: none;
 }
 
 #id-list-window {
-	overflow-x: hidden;
 	overflow-y: scroll;
 	position: absolute;
 	left: 0px;
@@ -170,6 +172,7 @@
 	transform: translateY(-50%);
 }
 
+.todo-message::-webkit-scrollbar,
 #id-list-window::-webkit-scrollbar
 {
 	width: 8px;
@@ -177,12 +180,14 @@
 	border-radius: 4px;
 }
 
+.todo-message::-webkit-scrollbar-track,
 #id-list-window::-webkit-scrollbar-track
 {
 	border-radius: 4px;
 	background-color: rgba(255, 255, 255, 0.2);
 }
 
+.todo-message::-webkit-scrollbar-thumb,
 #id-list-window::-webkit-scrollbar-thumb
 {
 	width: 10px;

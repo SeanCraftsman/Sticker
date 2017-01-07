@@ -43,7 +43,7 @@ var todoNew = function() {
         done: false,
         message: "<div>message</div>",
         date: d,
-        deadline: "",
+        deadline: "--:-- ----/--/--",
         x: "200px",
         y: "100px",
         z: zIndex,
