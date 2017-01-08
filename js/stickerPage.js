@@ -48,6 +48,7 @@ var cardTemplate = function(todo) {
 			<div class="card-title ${done}">
 				${title}
 			</div>
+			<span class="todo-shut">×</span>
 		</div>
 		`
 	return t 
