@@ -1,15 +1,19 @@
 var bindEventAddNew = function() {
-	var button = e('.add-sticker')
-	bindEvent(button, 'click', function(){
-		var c = e('#sticker-container')
-		var todo = todoNew()
-		saveTodo(todo)
-		showTodoList()
-	})
+	var list = ['.add-sticker', '.add-todo']
+	for (var i = 0; i < list.length; i++) {
+		var button = e(list[i])
+		bindEvent(button, 'click', function(){
+			var todo = todoNew()
+			saveTodo(todo)
+			var id = todo.id
+			e('.todo-sticker').dataset.id = id
+			showTodoList()
+		})
+	}
 }
 
 var changeZIndex = function(s) {
-	var container = e('#sticker-container')
+	var container = e('#id-sticker-container')
 	var indexS = s.style.zIndex
 	var list = es('.sticker')
 	for(var i = 0; i < list.length; i++) {
@@ -24,7 +28,7 @@ var changeZIndex = function(s) {
 }
 
 var bindEventDrag = function() {
-	var list = e('#sticker-container')
+	var list = e('#id-sticker-container')
 	// 事件委托
 	bindEvent(list, 'mousedown', function(event){
 		var target = event.target
@@ -151,8 +155,8 @@ var deleteSticker = function(s) {
 }
 
 var bindEventDelete = function() {
-	var list = e('#sticker-container')
-	bindEvent(list, 'click', function(event){
+	var container = e('#id-sticker-container')
+	bindEvent(container, 'click', function(event){
 		var target = event.target
 		var button = target.closest('.sticker-shut')
 		if( button != null) {
@@ -162,6 +166,16 @@ var bindEventDelete = function() {
 	})
 
 	bindEventTrashBin()
+
+	var list = e('#id-list-window')
+	bindEvent(list, 'click', function(event){
+		var target = event.target
+		var button = target.closest('.todo-shut')
+		if( button != null) {
+			var s = button.closest('.todo-card')
+			deleteSticker(s)
+		}
+	})
 }
 
 var bindEventTrashBin = function() {
@@ -188,7 +202,7 @@ var bindEventTrashBin = function() {
 var initApp = function() {
 	showTodoList()
 	var list = es('.sticker')
-	var container = e('#sticker-container')
+	var container = e('#id-sticker-container')
 	container.dataset.num = list.length
 	if (list.length == 0) {
 		localStorage.stickersID = 0
@@ -206,7 +220,7 @@ var targetContain = function(target, list) {
 }
 
 var bindEventDone = function() {
-	var list = e('#sticker-container')
+	var list = e('#id-sticker-container')
 	bindEvent(list, 'dblclick', function(event){
 		var list = ['sticker', 'sticker-shut', 'sticker-time', 'deadline-title', 
 					'finish-time', 'create-time', 'sticker-message']
@@ -221,6 +235,29 @@ var bindEventDone = function() {
 	})
 }
 
+var bindEventChangePage = function() {
+	var wall = e('#id-wall')
+	bindEvent(wall, 'click', function(){
+		showTodoList()
+		var pages = es('.todo-page')
+		for (var i = 0; i < pages.length; i++) {
+			pages[i].classList.add('hidden')
+		}
+		var w = e('#id-todo-wall')
+		w.classList.remove('hidden')
+	})
+	var list = e('#id-list')
+	bindEvent(list, 'click', function(){
+		showTodoList()
+		var pages = es('.todo-page')
+		for (var i = 0; i < pages.length; i++) {
+			pages[i].classList.add('hidden')
+		}
+		var l = e('#id-todo-list')
+		l.classList.remove('hidden')
+	})
+}
+
 var __main = function() {
 	initApp()
 	bindEventAddNew()
@@ -228,6 +265,8 @@ var __main = function() {
 	bindEventEditable()
 	bindEventDelete()
 	bindEventDone()
+	bindEventChangePage()
+	bindListAnimation()
 }
 
 __main()

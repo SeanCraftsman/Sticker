@@ -27,27 +27,29 @@ var getID = function() {
 }
 
 var getZIndex = function() {
-    var c = e('#sticker-container')
+    var c = e('#id-sticker-container')
     var z = parseInt(c.dataset.num) + 1
     c.dataset.num = z
     return c.dataset.num
+}
+
+const Todo = function(ID='', date='', zIndex='') {
+    this.id = ID,
+    this.title = "title",
+    this.done = false,
+    this.message = "<div>message</div>",
+    this.date = date,
+    this.deadline = "--:-- ----/--/--",
+    this.x = "200px",
+    this.y = "100px",
+    this.z = zIndex
 }
 
 var todoNew = function() {
     var d = time()
     var ID = getID()
     var zIndex = getZIndex()
-    var t = {
-        id: ID,
-        title: "title",
-        done: false,
-        message: "<div>message</div>",
-        date: d,
-        deadline: "",
-        x: "200px",
-        y: "100px",
-        z: zIndex,
-    }
+    var t = new Todo(ID, d, zIndex)
     return t
 }
 
