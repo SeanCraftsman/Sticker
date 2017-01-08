@@ -135,7 +135,7 @@ var bindListAnimation = function() {
 	bindEvent(listWindow, 'mousedown', function(event){
 		var target = event.target
 		var card = target.closest('.todo-card')
-		if (card != null) {
+		if (card != null && !target.classList.contains('todo-shut')) {
 			var id = card.dataset.id
 			var todo = getTodo(id)
 			changeDetail(todo)
@@ -154,11 +154,13 @@ var bindListAnimation = function() {
 var showTodoList = function() {
     var todoList = loadTodos()
     insertTodoList(todoList)
-    bindListAnimation()
     var id = e('.todo-sticker').dataset.id
     log('id,', id)
     if (id != '${id}') {
     	var todo = getTodo(id)
-		changeDetail(todo)
+    	if (todo == false) {
+    		todo = new Todo()
+    	}
+    	changeDetail(todo)
     }
 }

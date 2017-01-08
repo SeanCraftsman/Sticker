@@ -1,11 +1,15 @@
 var bindEventAddNew = function() {
-	var button = e('.add-sticker')
-	bindEvent(button, 'click', function(){
-		var c = e('#id-sticker-container')
-		var todo = todoNew()
-		saveTodo(todo)
-		showTodoList()
-	})
+	var list = ['.add-sticker', '.add-todo']
+	for (var i = 0; i < list.length; i++) {
+		var button = e(list[i])
+		bindEvent(button, 'click', function(){
+			var todo = todoNew()
+			saveTodo(todo)
+			var id = todo.id
+			e('.todo-sticker').dataset.id = id
+			showTodoList()
+		})
+	}
 }
 
 var changeZIndex = function(s) {
@@ -151,8 +155,8 @@ var deleteSticker = function(s) {
 }
 
 var bindEventDelete = function() {
-	var list = e('#id-sticker-container')
-	bindEvent(list, 'click', function(event){
+	var container = e('#id-sticker-container')
+	bindEvent(container, 'click', function(event){
 		var target = event.target
 		var button = target.closest('.sticker-shut')
 		if( button != null) {
@@ -162,6 +166,16 @@ var bindEventDelete = function() {
 	})
 
 	bindEventTrashBin()
+
+	var list = e('#id-list-window')
+	bindEvent(list, 'click', function(event){
+		var target = event.target
+		var button = target.closest('.todo-shut')
+		if( button != null) {
+			var s = button.closest('.todo-card')
+			deleteSticker(s)
+		}
+	})
 }
 
 var bindEventTrashBin = function() {
@@ -252,6 +266,7 @@ var __main = function() {
 	bindEventDelete()
 	bindEventDone()
 	bindEventChangePage()
+	bindListAnimation()
 }
 
 __main()
