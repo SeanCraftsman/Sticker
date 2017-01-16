@@ -19,7 +19,7 @@ var todoTemplate = function(todo) {
 			<span class="sticker-shut">×</span>
 			<div class="sticker-time">
 				<div class="deadline-title">deadline:</div>
-				<div class="finish-time">${deadline}</div>
+				<input type="datetime-local" class="finish-time" value="${deadline}">
 				<div class="create-time">time: ${time} </div>
 			</div>	
 			<div class="sticker-message" spellcheck="false">
@@ -35,8 +35,14 @@ var cardTemplate = function(todo) {
 	var title = todo.title
 	var deadline = todo.deadline
 	var id = todo.id
-	var time = deadline.split(' ')[0]
-	var date = deadline.split(' ')[1]
+	if(deadline.includes('T')) {
+		var time = deadline.split('T')[0]
+		var date = deadline.split('T')[1]	
+	} else {
+		var time = " "
+		var date = " "
+	}
+	
 	var t = `
 		<div class="todo-card" data-id=${id}>
 			<span class="circle"></span>
@@ -155,7 +161,6 @@ var showTodoList = function() {
     var todoList = loadTodos()
     insertTodoList(todoList)
     var id = e('.todo-sticker').dataset.id
-    log('id,', id)
     if (id != '${id}') {
     	var todo = getTodo(id)
     	if (todo == false) {
