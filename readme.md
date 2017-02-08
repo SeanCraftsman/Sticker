@@ -1,6 +1,20 @@
 # 这是一个 html 的便签应用
 ---
 ## 效果展示
+
+### 创建与拖动
+ 
+![CreateDrag](pic/create_drag.gif)
+ 
+### 编辑
+ 
+![Edit](pic/edit.gif)
+ 
+### 删除
+ 
+![Delete](pic/delete.gif)
+ 
+ 
 ![ShowImg](pic/v0_12.PNG)
 
 ## 功能说明
