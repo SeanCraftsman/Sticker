@@ -73,12 +73,15 @@
 }
 
 .finish-time {
+	font-family: "Microsoft Yahei";
 	color: black;
 	width: 160px;
 	height: 13px;
-	font-size: 13px;
+	font-size: 12px;
 	outline: none;
 	display: inline-block;
+	border: none;
+	background: rgba(0, 0, 0, 0);
 }
 
 .sticker-message {

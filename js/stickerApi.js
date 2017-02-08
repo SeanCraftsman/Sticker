@@ -13,7 +13,7 @@ var time = function() {
     day = formatTime(d.getDate())
     hour = formatTime(d.getHours())
     min = formatTime(d.getMinutes())
-    return `${hour}:${min}  ${year}/${month}/${day}`
+    return `${year}/${month}/${day}  ${hour}:${min}`
 }
 
 var getID = function() {
@@ -39,7 +39,7 @@ const Todo = function(ID='', date='', zIndex='') {
     this.done = false,
     this.message = "<div>message</div>",
     this.date = date,
-    this.deadline = "--:-- ----/--/--",
+    this.deadline = " ",
     this.x = "200px",
     this.y = "100px",
     this.z = zIndex
